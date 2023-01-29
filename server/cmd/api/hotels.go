@@ -2,13 +2,41 @@ package main
 
 import (
 	"FinalProject/internal/data"
+	"FinalProject/internal/validator"
 	"fmt"
 	"net/http"
 	"time"
 )
 
 func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(w, "adding new hotel...")
+	var input struct {
+		Title string   `json:"title"`
+		City  string   `json:"city"`
+		Price int64    `json:"price"`
+		Tags  []string `json:"tags"`
+	}
+
+	err := app.readJSON(w, r, &input)
+	if err != nil {
+		app.badRequestResponse(w, r, err)
+		return
+	}
+
+	hotel := &data.Hotel{
+		Title: input.Title,
+		City:  input.City,
+		Price: input.Price,
+		Tags:  input.Tags,
+	}
+
+	v := validator.New()
+
+	if data.ValidateHotel(v, hotel); !v.Valid() {
+		app.failedValidationResponse(w, r, v.Errors)
+		return
+	}
+
+	fmt.Fprintf(w, "%+v\n", input)
 }
 
 func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request) {
