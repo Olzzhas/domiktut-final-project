@@ -94,10 +94,154 @@ body{
     filter: invert(56%) sepia(68%) saturate(3560%) hue-rotate(337deg) brightness(101%) contrast(92%);
 }
 
-.test{
+.filter{
     width: 360px;
     height: 497px;
 
     background: #FFFFFF;
     border-radius: 20px;
+
+    h1{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        color: #444444;
+    }
+}
+
+.in-out-title{
+    display: flex;
+    margin-left: 60px;
+    h1{
+        margin-right: 87px;
+        margin-bottom: 6px;
+        margin-top: 59px;
+    }
+}
+
+.data-filter{
+    width: 280px;
+    height: 50px;
+
+    margin: 0 auto;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+
+    input{
+        cursor: pointer;
+        opacity: 1;
+        margin-left: 5px;
+        margin-top: 15px;
+        margin-right: 2px;
+        
+        border:rgba(0, 0, 0, 0);
+    }
+}
+
+.data-filter:focus{
+    input{
+        border:rgba(0, 0, 0, 0);
+    }
+}
+
+
+ 
+.data-input{
+    display: flex;
+    justify-content: space-between ;
+}
+
+.horizontal-line{
+    margin-top: 7px;
+    width: 1px;
+    height: 36px;
+
+    background: #C0C2D7;
+}
+
+.quantity-of-people{
+    width: 260px;
+    height: 50px;
+    
+    margin: 0 auto;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+
+    margin-left: 40px;
+    padding-left: 20px;
+}
+
+.quantity-title{
+    h1{
+        margin: 26px 0px 6px 60px;
+    }
+}
+
+.range{
+    margin-top: 40px;
+    h1{
+        margin-left: 60px;
+        margin-bottom: 15px;
+    }
+}
+
+.range-from{
+    width: 100px;
+    height: 50px;
+
+    margin-left: 40px;
+    margin-right: 34px;
+
+    padding-left: 20px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+}
+
+.range-to{
+    width: 100px;
+    height: 50px;
+
+    padding-left: 20px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+}
+
+.find{
+    width: 280px;
+    height: 50px;
+
+    background: #F4683F;
+    border-radius: 200px;
+
+    margin-left: 40px;
+    margin-top: 40px;
+
+    cursor: pointer;
+
+    transition: all 0.15s ease-in-out;
+    
+    h2{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 150%;
+        color: #FFFFFF;
+
+        padding-top: 10px;
+        padding-left: 110px;
+    }
+}
+
+.find:hover{
+    background-color: #ca5836;
 }

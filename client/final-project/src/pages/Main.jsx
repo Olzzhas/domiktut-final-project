@@ -51,7 +51,43 @@ function Main(){
                     </li>
 
                     <li className="right-block">
-                        <div className="test"></div>
+                        <div className="filter">
+
+                            <div className="in-out-title">
+                                <h1>Въезд</h1>
+                                <h1>Отъезд</h1>
+                            </div>
+
+                            <div className="data-filter">
+                                <ul className="data-input">
+                                    <li>
+                                        <input type="date" name="date-in" id="1" />
+                                    </li>
+                                    
+                                    <li className="horizontal-line"></li>
+                                    
+                                    <li>
+                                        <input type="date" name="date-in" id="2" />
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="quantity-title">
+                                <h1>Количество людей</h1>
+                            </div>
+                            
+                            <input type="text" className="quantity-of-people" placeholder="2" />
+
+                            <div className="range">
+                                <h1>Цена</h1>
+                                <input type="text" className="range-from" placeholder="От"/>
+                                <input type="text" className="range-to" placeholder="До"/>
+                            </div>
+
+                            <div className="find">
+                                <h2>Найти</h2>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
