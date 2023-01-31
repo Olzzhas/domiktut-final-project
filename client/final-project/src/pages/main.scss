@@ -249,7 +249,6 @@ body{
 
 .popular-hotels{
     margin-top: 200px;
-    margin-left: 260px;
 
     h1{
         font-family: 'Raleway';
@@ -262,4 +261,43 @@ body{
         margin-bottom: 40px;
     }
     
+}
+
+.wrapper{
+    width: 1440px;
+    margin: auto;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.catalog-button{
+    display: flex;
+    width: 280px;
+    height: 50px;
+    margin: auto;
+  
+    background: #F4683F;
+    border-radius: 200px;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    span{
+        margin: auto;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+
+        color: #FFFFFF;
+    }
+}
+
+.catalog-button:hover{
+    background: #c5512d;
 }

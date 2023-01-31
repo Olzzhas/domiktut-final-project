@@ -14,7 +14,7 @@ function Card(){
                 </div>
             </div>
 
-            <div className="hotel-img__containter">
+            <div className="hotel-img__container">
                 <img src="/img/hotels/hotel_1.png" alt="hotel" />
             </div>
 

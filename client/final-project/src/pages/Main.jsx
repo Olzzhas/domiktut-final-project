@@ -93,9 +93,22 @@ function Main(){
                 </ul>
             </div>
 
-            <div className="popular-hotels">
-                <h1>Популярное в каталоге</h1>
-                <Card/>
+            <div className="wrapper">
+                <div className="popular-hotels">
+                    <h1>Популярное в каталоге</h1>
+                    <div className="cards">
+                        <Card/>
+                        <Card/>
+                        <Card/>
+                        <Card/>
+                        <Card/>
+                        <Card/>
+                    </div>
+
+                    <div className="catalog-button">
+                        <span>Перейти в каталог</span>
+                    </div>
+                </div>
             </div>
         </div>
     )
