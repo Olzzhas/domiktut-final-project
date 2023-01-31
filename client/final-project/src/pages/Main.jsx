@@ -1,8 +1,22 @@
+import React from "react"
+import axios from "axios"
+
 import Navbar from "../components/navbar/Navbar"
 import Card from "../components/card/Card"
 
 import './main.scss'
 function Main(){
+    const [hotel, addToHotel] = React.useState([])
+
+    React.useEffect(() => {
+        axios.get('http://localhost:5000/api/hotels/1').then((response) => {
+            addToHotel(response.data)
+            console.log(response.data);
+        })
+    },[])
+
+    console.log(hotel);
+
     return(
         <div>
             <Navbar/>

@@ -3,6 +3,7 @@ package data
 import (
 	"FinalProject/internal/validator"
 	"database/sql"
+	"errors"
 	"github.com/lib/pq"
 	"time"
 )
@@ -47,8 +48,40 @@ func (h HotelModel) Insert(hotel *Hotel) error {
 	return h.DB.QueryRow(query, args...).Scan(&hotel.ID, &hotel.CreatedAt, &hotel.Version)
 }
 
-func (h HotelModel) Get(hotel *Hotel) error {
-	return nil
+func (h HotelModel) Get(id int64) (*Hotel, error) {
+	if id < 1 {
+		return nil, ErrRecordNotFound
+	}
+
+	query := `
+		SELECT id, created_at, title, city, price, capacity, tags, version
+		from hotels
+		where id = $1
+	`
+
+	var hotel Hotel
+
+	err := h.DB.QueryRow(query, id).Scan(
+		&hotel.ID,
+		&hotel.CreatedAt,
+		&hotel.Title,
+		&hotel.City,
+		&hotel.Price,
+		&hotel.Capacity,
+		pq.Array(&hotel.Tags),
+		&hotel.Version,
+	)
+
+	if err != nil {
+		switch {
+		case errors.Is(err, sql.ErrNoRows):
+			return nil, ErrRecordNotFound
+		default:
+			return nil, err
+		}
+	}
+
+	return &hotel, nil
 }
 
 func (h HotelModel) Update(hotel *Hotel) error {
