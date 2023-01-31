@@ -1,4 +1,5 @@
-import Navbar from "../components/Navbar"
+import Navbar from "../components/navbar/Navbar"
+import Card from "../components/card/Card"
 
 import './main.scss'
 function Main(){
@@ -90,6 +91,11 @@ function Main(){
                         </div>
                     </li>
                 </ul>
+            </div>
+
+            <div className="popular-hotels">
+                <h1>Популярное в каталоге</h1>
+                <Card/>
             </div>
         </div>
     )

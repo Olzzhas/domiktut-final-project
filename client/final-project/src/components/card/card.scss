@@ -1,0 +1,154 @@
+.card-wrapper{
+    position: relative;
+    width: 440px;
+    height: 600px;
+    overflow: hidden;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 80px rgba(5, 9, 22, 0.08);
+    border-radius: 20px;
+}
+
+.hotel-img__container{
+    width: 440px;
+    height: 300px;
+}
+
+.buttons{
+    position: absolute;
+    
+}
+
+.guest-count-button{
+    display: flex;
+
+    margin-left: 328px;
+    margin-top: 24px;
+
+    width: 92px;
+    height: 36px;
+
+    background: #FFFFFF;
+    border-radius: 150px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        width: 18px;
+        margin-left: 15px;
+    }
+
+    h2{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 150%;
+
+        color: #727488;
+
+        margin-right: 12px;
+    }
+}
+
+.fav-button{
+    width: 50px;
+    height: 50px;
+    display: flex;
+
+    margin-top: 168px;
+    margin-left: 370px;
+
+    cursor: pointer;
+
+
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 4px 20px rgba(21, 22, 34, 0.2);
+    border-radius: 200px;
+
+    transition: all 0.15s ease-in-out;
+
+    img{
+        margin: auto;
+        transition: all 0.15s ease-in-out;
+    }
+}
+
+.fav-button:hover{
+    background-color: white;
+    img{
+        filter: invert(56%) sepia(68%) saturate(3560%) hue-rotate(337deg) brightness(101%) contrast(92%);
+        transform: scale(1.15);
+    }
+}
+
+.card-title{
+    margin: 30px 0px 24px 30px;
+    h3{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 24px;
+
+        color: #333333;
+    }
+}
+
+.tags{
+    margin-left: 30px;
+    h4{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        
+        color: #727488;
+    }
+}
+
+.tag{
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.icon-container{
+    min-width: 30px;
+}
+
+.price-info{
+    display: flex;
+    justify-content: space-between;
+
+    margin: 32px 30px 0px 30px;
+
+    h6{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 22px;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        color: #333333;
+    }
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+
+        color: #F4683F;
+
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+    }
+}
+
+.price-info:hover{
+    span{
+        color: #b84c2c;
+    }
+}

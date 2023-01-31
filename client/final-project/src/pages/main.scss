@@ -2,6 +2,7 @@ body{
     background-image: url('../../public/img/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 
 .welcome-block{
@@ -244,4 +245,21 @@ body{
 
 .find:hover{
     background-color: #ca5836;
+}
+
+.popular-hotels{
+    margin-top: 200px;
+    margin-left: 260px;
+
+    h1{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 40px;
+
+        color: #333333;
+
+        margin-bottom: 40px;
+    }
+    
 }
