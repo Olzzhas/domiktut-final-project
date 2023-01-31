@@ -10,10 +10,11 @@ import (
 
 func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Request) {
 	var input struct {
-		Title string   `json:"title"`
-		City  string   `json:"city"`
-		Price int64    `json:"price"`
-		Tags  []string `json:"tags"`
+		Title    string   `json:"title"`
+		City     string   `json:"city"`
+		Price    int64    `json:"price"`
+		Capacity int64    `json:"capacity"`
+		Tags     []string `json:"tags"`
 	}
 
 	err := app.readJSON(w, r, &input)
@@ -23,10 +24,11 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 	}
 
 	hotel := &data.Hotel{
-		Title: input.Title,
-		City:  input.City,
-		Price: input.Price,
-		Tags:  input.Tags,
+		Title:    input.Title,
+		City:     input.City,
+		Price:    input.Price,
+		Capacity: input.Capacity,
+		Tags:     input.Tags,
 	}
 
 	v := validator.New()
@@ -36,7 +38,19 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	fmt.Fprintf(w, "%+v\n", input)
+	err = app.models.Hotels.Insert(hotel)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+		return
+	}
+
+	headers := make(http.Header)
+	headers.Set("Location", fmt.Sprintf("/v1/hotles/%d", hotel.ID))
+
+	err = app.writeJSON(w, http.StatusCreated, envelope{"hotel": hotel}, headers)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+	}
 }
 
 func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request) {

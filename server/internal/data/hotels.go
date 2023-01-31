@@ -2,6 +2,8 @@ package data
 
 import (
 	"FinalProject/internal/validator"
+	"database/sql"
+	"github.com/lib/pq"
 	"time"
 )
 
@@ -11,6 +13,7 @@ type Hotel struct {
 	Title     string    `json:"title"`
 	City      string    `json:"city"`
 	Price     int64     `json:"price"`
+	Capacity  int64     `json:"capacity"`
 	Tags      []string  `json:"tags"`
 	Version   int32     `json:"version"`
 }
@@ -26,4 +29,32 @@ func ValidateHotel(v *validator.Validator, hotel *Hotel) {
 
 	v.Check(len(hotel.Tags) >= 1, "tags", "must contain at least 1 tag")
 	v.Check(validator.Unique(hotel.Tags), "tags", "must not contain duplicate values")
+}
+
+type HotelModel struct {
+	DB *sql.DB
+}
+
+func (h HotelModel) Insert(hotel *Hotel) error {
+	query := `
+		INSERT INTO hotels (title, city, price, capacity,tags)
+		VALUES ($1, $2, $3, $4, $5)
+		RETURNING id, created_at, version
+	`
+
+	args := []any{hotel.Title, hotel.City, hotel.Price, hotel.Capacity, pq.Array(hotel.Tags)}
+
+	return h.DB.QueryRow(query, args...).Scan(&hotel.ID, &hotel.CreatedAt, &hotel.Version)
+}
+
+func (h HotelModel) Get(hotel *Hotel) error {
+	return nil
+}
+
+func (h HotelModel) Update(hotel *Hotel) error {
+	return nil
+}
+
+func (h HotelModel) Delete(hotel *Hotel) error {
+	return nil
 }
