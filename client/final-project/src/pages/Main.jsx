@@ -1,22 +1,10 @@
 import React from "react"
-import axios from "axios"
 
 import Navbar from "../components/navbar/Navbar"
 import Card from "../components/card/Card"
 
 import './main.scss'
-function Main(){
-    const [hotel, addToHotel] = React.useState([])
-
-    React.useEffect(() => {
-        axios.get('http://localhost:5000/api/getAllHotels').then((response) => {
-            addToHotel(response.data)
-            console.log(response.data.hotel.capacity);
-        })
-    },[])
-
-    console.log(hotel);
-
+function Main({hotels}){
     return(
         <div>
             <Navbar/>
@@ -111,12 +99,9 @@ function Main(){
                 <div className="popular-hotels">
                     <h1>Популярное в каталоге</h1>
                     <div className="cards">
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
+                        {hotels.map((hotel) => (
+                            <Card title={hotel.title} price={hotel.price} city={hotel.city} capacity={hotel.capacity} img={hotel.img} tags={hotel.tags}/>
+                        ))}
                     </div>
 
                     <div className="catalog-button">

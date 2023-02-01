@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS hotels (
                                       capacity int not null ,
                                       price integer NOT NULL,
                                       city text NOT NULL,
+                                      img text NOT NULL,
                                       tags text[] NOT NULL,
                                       version integer NOT NULL DEFAULT 1
 );

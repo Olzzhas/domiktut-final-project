@@ -1,12 +1,12 @@
 import "./card.scss"
 
-function Card(){
+function Card({title, price, city, img, capacity, tags}){
     return(
         <div className="card-wrapper">
             <div className="buttons">
                 <div className="guest-count-button">
                     <img src="/img/svg/user.svg" alt="user" />
-                    <h2>до 30</h2>
+                    <h2>до {capacity}</h2>
                 </div>
 
                 <div className="fav-button">
@@ -15,11 +15,11 @@ function Card(){
             </div>
 
             <div className="hotel-img__container">
-                <img src="/img/hotels/hotel_1.png" alt="hotel" />
+                <img src={img} alt="hotel" />
             </div>
 
             <div className="card-title">
-                <h3>Новая сосновка</h3>
+                <h3>{title}</h3>
             </div>
 
             <div className="tags">
@@ -53,7 +53,7 @@ function Card(){
             </div>
 
             <div className="price-info">
-                <h6>от 70 000 ₸ / сутки </h6>
+                <h6>от {price} ₸ / сутки </h6>
                 <span>Подробнее</span>
             </div>
 

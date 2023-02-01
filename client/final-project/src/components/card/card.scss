@@ -14,6 +14,12 @@
 .hotel-img__container{
     width: 440px;
     height: 300px;
+    overflow: hidden;
+    img{
+        width: 440px;
+        height: 300px;
+        object-fit:cover;
+    }
 }
 
 // .hotel-img__containter:hover{

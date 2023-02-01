@@ -14,6 +14,7 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 		City     string   `json:"city"`
 		Price    int64    `json:"price"`
 		Capacity int64    `json:"capacity"`
+		Img      string   `json:"img"`
 		Tags     []string `json:"tags"`
 	}
 
@@ -28,6 +29,7 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 		City:     input.City,
 		Price:    input.Price,
 		Capacity: input.Capacity,
+		Img:      input.Img,
 		Tags:     input.Tags,
 	}
 
@@ -54,16 +56,23 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 }
 
 func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{
-		"title": "Test",
-		"city":  "Kostanay",
-		"price": "10000",
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	hotels, err := app.models.Hotels.GetAll()
+	if err != nil {
+		switch {
+		case errors.Is(err, data.ErrRecordNotFound):
+			app.notFoundResponse(w, r)
+		default:
+			app.serverErrorResponse(w, r, err)
+		}
+		return
 	}
 
-	err := app.writeJSON(w, http.StatusOK, envelope{"hotel": data}, nil)
+	err = app.writeJSON(w, http.StatusOK, hotels, nil)
 	if err != nil {
-		app.logger.Print(err)
-		http.Error(w, "The server encountered a problem and could not process your request", http.StatusInternalServerError)
+		app.serverErrorResponse(w, r, err)
 	}
 
 }

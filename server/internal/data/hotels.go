@@ -15,6 +15,7 @@ type Hotel struct {
 	City      string    `json:"city"`
 	Price     int64     `json:"price"`
 	Capacity  int64     `json:"capacity"`
+	Img       string    `json:"img"`
 	Tags      []string  `json:"tags"`
 	Version   int32     `json:"version"`
 }
@@ -38,12 +39,12 @@ type HotelModel struct {
 
 func (h HotelModel) Insert(hotel *Hotel) error {
 	query := `
-		INSERT INTO hotels (title, city, price, capacity,tags)
-		VALUES ($1, $2, $3, $4, $5)
+		INSERT INTO hotels (title, city, price, capacity, img, tags)
+		VALUES ($1, $2, $3, $4, $5, $6)
 		RETURNING id, created_at, version
 	`
 
-	args := []any{hotel.Title, hotel.City, hotel.Price, hotel.Capacity, pq.Array(hotel.Tags)}
+	args := []any{hotel.Title, hotel.City, hotel.Price, hotel.Capacity, hotel.Img, pq.Array(hotel.Tags)}
 
 	return h.DB.QueryRow(query, args...).Scan(&hotel.ID, &hotel.CreatedAt, &hotel.Version)
 }
@@ -54,7 +55,7 @@ func (h HotelModel) Get(id int64) (*Hotel, error) {
 	}
 
 	query := `
-		SELECT id, created_at, title, city, price, capacity, tags, version
+		SELECT id, created_at, title, city, price, capacity, img, tags, version
 		from hotels
 		where id = $1
 	`
@@ -68,6 +69,7 @@ func (h HotelModel) Get(id int64) (*Hotel, error) {
 		&hotel.City,
 		&hotel.Price,
 		&hotel.Capacity,
+		&hotel.Img,
 		pq.Array(&hotel.Tags),
 		&hotel.Version,
 	)
@@ -82,6 +84,40 @@ func (h HotelModel) Get(id int64) (*Hotel, error) {
 	}
 
 	return &hotel, nil
+}
+
+func (h HotelModel) GetAll() ([]Hotel, error) {
+	query := `
+		SELECT id, created_at, title, city, price, capacity, img, tags, version
+		from hotels
+		where id > 0
+	`
+
+	var hotels []Hotel
+
+	rows, err := h.DB.Query(query)
+
+	for rows.Next() {
+		var hotel Hotel
+		if err := rows.Scan(
+			&hotel.ID,
+			&hotel.CreatedAt,
+			&hotel.Title,
+			&hotel.City,
+			&hotel.Price,
+			&hotel.Capacity,
+			&hotel.Img,
+			pq.Array(&hotel.Tags),
+			&hotel.Version); err != nil {
+			return hotels, err
+		}
+		hotels = append(hotels, hotel)
+	}
+
+	if err = rows.Err(); err != nil {
+		return hotels, err
+	}
+	return hotels, nil
 }
 
 func (h HotelModel) Update(hotel *Hotel) error {
