@@ -1,10 +1,50 @@
 import React from "react"
+import axios from "axios"
 
 import Navbar from "../components/navbar/Navbar"
 import Card from "../components/card/Card"
 
 import './main.scss'
 function Main({hotels}){
+
+    const [filteredData, setFilteredData] = React.useState({
+        "date_in":"",
+        "date_out":"",
+        "quantity_of_people":0,
+        "city":"",
+        "price_min":0,
+        "price_max":0
+    })
+
+    function handle(e){
+        const newdata={...filteredData}
+        newdata[e.target.id] = e.target.value
+        setFilteredData(newdata)
+    }
+
+    function submit(e){
+        e.preventDefault();
+
+        const headers = {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:5000'
+        }
+
+        axios.post("http://localhost:5000/api/filter",{
+            date_in: filteredData.date_in,
+            date_out: filteredData.date_out,
+            quantity_of_people: filteredData.quantity_of_people,
+            city: filteredData.city,
+            price_min: filteredData.price_min,
+            price_max: filteredData.price_max
+        }, 
+        {headers})
+        .then(res=>{
+            console.log(res.data);
+        })
+        
+    }
+
     return(
         <div>
             <Navbar/>
@@ -45,52 +85,54 @@ function Main({hotels}){
                         </div>
 
                         <div className="social">
-                            <img className="social-ico" src="./img/social/youtube.svg" alt="social-ico"/>
-                            <img className="social-ico" src="./img/social/instagram.svg" alt="social-ico"/>
-                            <img className="social-ico" src="./img/social/vk.svg" alt="social-ico"/>
+                            <img className="social-ico" src="./img/social/youtube.svg"  alt="social-ico"/>
+                            <img className="social-ico" src="./img/social/instagram.svg"alt="social-ico"/>
+                            <img className="social-ico" src="./img/social/vk.svg"       alt="social-ico"/>
                             <img className="social-ico" src="./img/social/telegram.svg" alt="social-ico"/>
-                            <img className="social-ico"src="./img/social/whatsapp.svg" alt="social-ico"/>
+                            <img className="social-ico" src="./img/social/whatsapp.svg" alt="social-ico"/>
                         </div>
                     </li>
 
                     <li className="right-block">
-                        <div className="filter">
+                        <form action="http://localhost:5000/api/filter" onSubmit={(e)=>submit(e)} method="post" id="filter">
+                            <div className="filter">
 
-                            <div className="in-out-title">
-                                <h1>Въезд</h1>
-                                <h1>Отъезд</h1>
-                            </div>
+                                <div className="in-out-title">
+                                    <h1>Въезд</h1>
+                                    <h1>Отъезд</h1>
+                                </div>
 
-                            <div className="data-filter">
-                                <ul className="data-input">
-                                    <li>
-                                        <input type="date" name="date-in" id="1" />
-                                    </li>
-                                    
-                                    <li className="horizontal-line"></li>
-                                    
-                                    <li>
-                                        <input type="date" name="date-in" id="2" />
-                                    </li>
-                                </ul>
-                            </div>
+                                <div className="data-filter">
+                                    <ul className="data-input">
+                                        <li>
+                                            <input onChange={(e)=>handle(e)} id="date_in" value={filteredData.date_in} type="date" name="date_in"  />
+                                        </li>
+                                        
+                                        <li className="horizontal-line"></li>
+                                        
+                                        <li>
+                                            <input onChange={(e)=>handle(e)} id="date_out" value={filteredData.date_out} type="date" name="date_out" />
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <div className="quantity-title">
-                                <h1>Количество людей</h1>
-                            </div>
-                            
-                            <input type="text" className="quantity-of-people" placeholder="2" />
+                                <div className="quantity-title">
+                                    <h1>Количество людей</h1>
+                                </div>
+                                
+                                <input onChange={(e)=>handle(e)} id="quantity_of_people" value={filteredData.quantity_of_people} name="quantity_of_people" type="text" className="quantity-of-people" placeholder="2" />
 
-                            <div className="range">
-                                <h1>Цена</h1>
-                                <input type="text" className="range-from" placeholder="От"/>
-                                <input type="text" className="range-to" placeholder="До"/>
-                            </div>
+                                <div className="range">
+                                    <h1>Цена</h1>
+                                    <input onChange={(e)=>handle(e)} id="price_min" value={filteredData.price_min} name="price_min" type="text" className="range-from" placeholder="От"/>
+                                    <input onChange={(e)=>handle(e)} id="price_max" value={filteredData.price_max} name="price_max" type="text" className="range-to" placeholder="До"/>
+                                </div>
 
-                            <div className="find">
-                                <h2>Найти</h2>
+                                <button type="submit" value="submit" form="filter" className="find">
+                                    <h2>Найти</h2>
+                                </button>
                             </div>
-                        </div>
+                        </form>
                     </li>
                 </ul>
             </div>

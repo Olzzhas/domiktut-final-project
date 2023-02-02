@@ -12,5 +12,7 @@ func (app *application) routes() *httprouter.Router {
 	router.HandlerFunc(http.MethodPost, "/api/hotels", app.createHotelHandler)
 	router.HandlerFunc(http.MethodGet, "/api/hotels/:id", app.showHotelHandler)
 
+	router.HandlerFunc(http.MethodPost, "/api/filter", app.showFilteredHotelsHandler)
+
 	return router
 }

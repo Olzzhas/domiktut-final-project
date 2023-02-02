@@ -3,6 +3,7 @@ package main
 import (
 	"FinalProject/internal/data"
 	"FinalProject/internal/validator"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -56,8 +57,7 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 }
 
 func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 
 	hotels, err := app.models.Hotels.GetAll()
 	if err != nil {
@@ -78,8 +78,7 @@ func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func (app *application) showHotelHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	id, err := app.readIDParam(r)
 	if err != nil {
 		http.NotFound(w, r)
@@ -101,5 +100,31 @@ func (app *application) showHotelHandler(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		app.serverErrorResponse(w, r, err)
 	}
+}
 
+type filter struct {
+	DateIn           any    `json:"date_in"`
+	DateOut          any    `json:"date_out"`
+	QuantityOfPeople any    `json:"quantity_of_people"`
+	City             string `json:"city"`
+	PriceMin         any    `json:"price_min"`
+	PriceMax         any    `json:"price_max"`
+}
+
+func (app *application) showFilteredHotelsHandler(w http.ResponseWriter, r *http.Request) {
+	//enableCors(&w)
+
+	var f filter
+
+	err := json.NewDecoder(r.Body).Decode(&f)
+	if err != nil {
+		app.badRequestResponse(w, r, err)
+		return
+	}
+
+	fmt.Fprintf(w, "Filtered data: %+v", f)
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	//http.Redirect(w, r, "http://localhost:3000", http.StatusSeeOther)
 }

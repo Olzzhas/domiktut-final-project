@@ -5,7 +5,7 @@ import Main from "./pages/Main"
 import './reset.css'
 
 function App() {
-  const [hotels, addToHotels] = React.useState(["sad","sdaasd"])
+  const [hotels, addToHotels] = React.useState([])
 
     React.useEffect(() => {
       async function fetchData() {
@@ -13,9 +13,7 @@ function App() {
           const [itemsResponse] = await Promise.all([
             axios.get('http://localhost:5000/api/getAllHotels'),
           ]);
-
           const obj = itemsResponse.data
-          console.log(obj);
           addToHotels(obj)
         } catch (error) {
           console.log(error);
