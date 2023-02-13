@@ -1,0 +1,47 @@
+.navabar-light{
+    width: 1800px;
+}
+
+.left-side{
+    display: flex;
+    align-items: center;
+}
+
+.city{
+    display: flex;
+    align-items: center;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #333333;
+
+    margin-right: 26px;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    .map{
+        margin-right: 6.8px;
+    }
+
+    h1{
+        margin-right: 6.8px;
+    }
+
+    img{
+        transition: all 0.15s ease-in-out;
+    }
+}
+
+.arrow{
+    filter: invert(80%) sepia(4%) saturate(29%) hue-rotate(3deg) brightness(103%) contrast(84%);
+}
+
+.city:hover{
+    color:#F4683F;
+    .arrow{
+        filter: invert(56%) sepia(68%) saturate(3560%) hue-rotate(337deg) brightness(101%) contrast(92%);
+    }
+}

@@ -1,8 +1,8 @@
 import React from "react"
 import axios from "axios"
 
-import Navbar from "../components/navbar/Navbar"
-import Card from "../components/card/Card"
+import Navbar from "../../components/navbar/Navbar"
+import Card from "../../components/card/Card"
 
 import './main.scss'
 function Main({hotels}){
@@ -25,11 +25,6 @@ function Main({hotels}){
     function submit(e){
         e.preventDefault();
 
-        const headers = {
-            'Content-Type':'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:5000'
-        }
-
         axios.post("http://localhost:5000/api/filter",{
             date_in: filteredData.date_in,
             date_out: filteredData.date_out,
@@ -37,12 +32,10 @@ function Main({hotels}){
             city: filteredData.city,
             price_min: filteredData.price_min,
             price_max: filteredData.price_max
-        }, 
-        {headers})
+        },)
         .then(res=>{
             console.log(res.data);
         })
-        
     }
 
     return(

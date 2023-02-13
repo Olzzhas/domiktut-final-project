@@ -23,7 +23,7 @@ func CorsSettings() *cors.Cors {
 			"Access-Control-Allow-Origin",
 			"Content-Type",
 		},
-		Debug: true,
+		Debug: false,
 	})
 	return c
 }

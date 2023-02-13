@@ -57,8 +57,6 @@ func (app *application) createHotelHandler(w http.ResponseWriter, r *http.Reques
 }
 
 func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-
 	hotels, err := app.models.Hotels.GetAll()
 	if err != nil {
 		switch {
@@ -78,7 +76,6 @@ func (app *application) getHotelsHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func (app *application) showHotelHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	id, err := app.readIDParam(r)
 	if err != nil {
 		http.NotFound(w, r)
@@ -103,17 +100,15 @@ func (app *application) showHotelHandler(w http.ResponseWriter, r *http.Request)
 }
 
 type filter struct {
-	DateIn           any    `json:"date_in"`
-	DateOut          any    `json:"date_out"`
-	QuantityOfPeople any    `json:"quantity_of_people"`
+	DateIn           string `json:"date_in"`
+	DateOut          string `json:"date_out"`
+	QuantityOfPeople int32  `json:"quantity_of_people"`
 	City             string `json:"city"`
-	PriceMin         any    `json:"price_min"`
-	PriceMax         any    `json:"price_max"`
+	PriceMin         int32  `json:"price_min"`
+	PriceMax         int32  `json:"price_max"`
 }
 
 func (app *application) showFilteredHotelsHandler(w http.ResponseWriter, r *http.Request) {
-	//enableCors(&w)
-
 	var f filter
 
 	err := json.NewDecoder(r.Body).Decode(&f)
@@ -122,9 +117,19 @@ func (app *application) showFilteredHotelsHandler(w http.ResponseWriter, r *http
 		return
 	}
 
-	fmt.Fprintf(w, "Filtered data: %+v", f)
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	hotels, err := app.models.Hotels.GetFilteredData(f.DateIn, f.DateOut, f.City, f.PriceMin, f.PriceMax, f.QuantityOfPeople)
+	if err != nil {
+		switch {
+		case errors.Is(err, data.ErrRecordNotFound):
+			app.notFoundResponse(w, r)
+		default:
+			app.serverErrorResponse(w, r, err)
+		}
+		return
+	}
 
-	//http.Redirect(w, r, "http://localhost:3000", http.StatusSeeOther)
+	err = app.writeJSON(w, http.StatusOK, envelope{"hotels": hotels}, nil)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+	}
 }

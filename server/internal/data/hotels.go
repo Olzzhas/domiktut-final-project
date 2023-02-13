@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/lib/pq"
+	"log"
 	"time"
 )
 
@@ -18,6 +19,13 @@ type Hotel struct {
 	Img       string    `json:"img"`
 	Tags      []string  `json:"tags"`
 	Version   int32     `json:"version"`
+}
+
+type booking struct {
+	ID      int64  `json:"id"`
+	DateIn  string `json:"date_in"`
+	DateOut string `json:"date_out"`
+	HotelID int64  `json:"hotel_id"`
 }
 
 func ValidateHotel(v *validator.Validator, hotel *Hotel) {
@@ -109,6 +117,51 @@ func (h HotelModel) GetAll() ([]Hotel, error) {
 			&hotel.Img,
 			pq.Array(&hotel.Tags),
 			&hotel.Version); err != nil {
+			return hotels, err
+		}
+		hotels = append(hotels, hotel)
+	}
+
+	if err = rows.Err(); err != nil {
+		return hotels, err
+	}
+	return hotels, nil
+}
+
+func (h HotelModel) GetFilteredData(dateIn, dateOut, city string, min_price, max_price, capacity int32) ([]Hotel, error) {
+	query := `
+		SELECT hotels.id, hotels.created_at, hotels.title, hotels.city, hotels.price, hotels.capacity, hotels.img, hotels.tags, hotels.version FROM hotels
+		    JOIN bookings
+		        ON (hotels.id = bookings.hotel_id)
+		               AND (($1 < bookings.date_in AND $2 < bookings.date_in) OR ($1 > bookings.date_out AND $2 > bookings.date_out))
+				AND(hotels.capacity >= $3)
+				AND(hotels.price >= $4)
+				AND(hotels.price <= $5)
+				AND(hotels.city = $6)
+	`
+
+	args := []any{dateIn, dateOut, capacity, min_price, max_price, city}
+
+	rows, err := h.DB.Query(query, args...)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var hotels []Hotel
+
+	for rows.Next() {
+		var hotel Hotel
+		err := rows.Scan(
+			&hotel.ID,
+			&hotel.CreatedAt,
+			&hotel.Title,
+			&hotel.City,
+			&hotel.Price,
+			&hotel.Capacity,
+			&hotel.Img,
+			pq.Array(&hotel.Tags),
+			&hotel.Version)
+		if err != nil {
 			return hotels, err
 		}
 		hotels = append(hotels, hotel)
