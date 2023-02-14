@@ -23,14 +23,15 @@ function App() {
       }
       fetchData();
     }, []);
+
   
   return (
     <div>
-      <div className='main-page'>
+      {/* <div className='main-page'>
         <Main hotels={hotels} />
-      </div>
+      </div> */}
       
-      {/* <HotelInfo/> */}
+      <HotelInfo/>
     </div>
   );
 }

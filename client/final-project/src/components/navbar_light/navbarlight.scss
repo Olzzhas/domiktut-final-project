@@ -1,5 +1,14 @@
-.navabar-light{
+.navbar-light{
     width: 1800px;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 41px;
+}
+
+.logo-light{
+    margin-right: 41px;
 }
 
 .left-side{
@@ -7,7 +16,7 @@
     align-items: center;
 }
 
-.city{
+.city-light{
     display: flex;
     align-items: center;
 
@@ -39,9 +48,69 @@
     filter: invert(80%) sepia(4%) saturate(29%) hue-rotate(3deg) brightness(103%) contrast(84%);
 }
 
-.city:hover{
+.city-light:hover{
     color:#F4683F;
     .arrow{
         filter: invert(56%) sepia(68%) saturate(3560%) hue-rotate(337deg) brightness(101%) contrast(92%);
     }
+}
+
+.right-side-light{
+    display: flex;
+
+    align-items: center;
+
+    
+    .favorite-svg{
+        margin-right: 34px;
+        filter: invert(56%) sepia(68%) saturate(3560%) hue-rotate(337deg) brightness(101%) contrast(92%);
+    }
+}
+
+.search{
+    display: flex;
+    input{
+        width: 200px;
+        height: 22px;
+        border: none;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+    
+        color: #333333;
+
+        margin-right: 32px;
+        margin-left: 9px;
+
+    }
+}
+
+.phone-svg{
+    margin-right: 9px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(1380%) hue-rotate(184deg) brightness(101%) contrast(81%); 
+}
+
+.phone-svg:hover{
+    filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+}
+
+.phone-span{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #333333;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.phone-span:hover{
+    color:#F4683F;
 }

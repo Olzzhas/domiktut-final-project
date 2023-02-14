@@ -1,0 +1,497 @@
+.button-font{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+
+    color: #333333;
+    transition: all 0.15s ease-in-out;
+}
+
+.price-arrow-light{
+    width: 20px;
+    transition: all 0.15s ease-in-out;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(1380%) hue-rotate(184deg) brightness(101%) contrast(81%);
+}
+
+
+.hotel-info__wrapper{
+    width: 1800px;
+    margin: auto;
+}
+
+.hotel-info__filter{
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 50px;
+}
+
+.hotel-info__price{
+    display: flex;
+    width: 93px;
+    height: 50px;
+
+    margin-right: 20px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+
+    cursor: pointer;
+
+}
+
+.hotel-info__button-content{
+    margin: auto;
+}
+
+.hotel-info__price:hover{
+    span{
+        color:#F4683F;
+    }
+
+    .price-arrow-light{
+        width: 20px;
+        filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+    }
+}
+
+.hotel-info__data{
+    width: 280px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+    display: flex;
+    cursor: pointer;
+
+    input{
+        margin: auto;
+        border: none;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+
+        color: #333333;
+    }
+}
+
+.hotel-info__tags{
+    display: flex;
+    margin-right: 16px;
+    width: 173px;
+    height: 50px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.hotel-info__tags:hover{
+    span{
+        color:#F4683F;
+    }
+
+    .price-arrow-light{
+        width: 20px;
+        filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+    }
+}
+
+.hotel-info__bedplace{
+    display: flex;
+    width: 377px;
+    height: 50px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.hotel-info__bedplace:hover{
+    span{
+        color:#F4683F;
+    }
+
+    .price-arrow-light{
+        width: 20px;
+        filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+    }
+}
+
+.hotel-info__city{
+    display: flex;
+    margin-right: 16px;
+    width: 120px;
+    height: 50px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.hotel-info__city:hover{
+    span{
+        color:#F4683F;
+    }
+
+    .price-arrow-light{
+        width: 20px;
+        filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+    }
+}
+
+.hotel-info__result-button{
+    display: flex;
+
+    width: 213px;
+    height: 49px;
+
+    background: #F4683F;
+    border-radius: 200px;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        text-align: center;
+
+        color: #FFFFFF;
+
+        margin: auto;
+    }
+}
+
+.hotel-info__result-button:hover{
+    background: #e64d1f;
+}
+
+.flex{
+    display: flex;
+}
+
+.price-dropdown-novisible{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: var(--speed) ease;
+}
+
+.price-dropdown{
+    position: absolute;
+    width: 360px;
+    height: 200px;
+    left: 60px;
+    top: 200px;
+    
+    transform: translateY(0);
+    transition: var(--speed) ease;
+
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
+
+    input{
+        width: 105px;
+        height: 40px;
+
+        padding-left: 15px;
+        padding-right: 15px;
+    
+        background: #FFFFFF;
+        border: 1px solid #C0C2D7;
+        border-radius: 200px;
+    }
+
+    span{
+        margin: auto;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+
+        color: #727488;
+
+        margin-bottom: 5px;
+    }
+}
+
+.price-block{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-dropdown__input-block{
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.price-dropdown__submit-block{
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    padding-top: 0;
+
+    p{
+        margin: auto;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        /* identical to box height, or 24px */
+
+        text-decoration-line: underline;
+
+        color: #727488;
+    }
+}
+
+.price-dropdown__submit{
+    width: 134px;
+    height: 50px;
+    left: 186px;
+    top: 236px;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    background: #F4683F;
+    border-radius: 200px;
+    border: none;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+
+    color: #FFFFFF;
+}
+
+.price-dropdown__submit:hover{
+    background: #e64d1f;
+}
+
+.p-div{
+    width: 134px;
+    height: 50px;
+    display: flex;
+}
+
+.tag-dropdown{
+    position: absolute;
+    width: 330px;
+    height: 250px;
+    left: 700px;
+    top: 200px;
+
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
+}
+
+.tag-item{
+    img{
+        margin-right: 13px;
+    }
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 200%;
+
+        color: #333333;
+    }
+}
+
+.tags-block{
+    margin-top: 40px;
+    margin-left: 36px;
+}
+
+.tag-dropdown-hidden{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+}
+
+.hotel-info__bedplace-dropdown{
+    position: absolute;
+    width: 375px;
+    height: 210px;
+    left: 890px;
+    top: 200px;
+
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
+}
+
+.bedplace-input-block{
+    width: fit-content;
+    display:flex ;
+    flex-direction: column;
+    span{
+        margin: auto;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+    
+        color: #727488;
+    }
+}
+
+.bedplace-input{
+    width: 91px;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+
+        text-align: center;
+
+        color: #333333;
+    }
+}
+
+.plus-svg{
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(1380%) hue-rotate(184deg) brightness(101%) contrast(81%);
+}
+
+.plus-svg:hover{
+    filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+}
+
+.minus-svg{
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(0%) saturate(1380%) hue-rotate(184deg) brightness(101%) contrast(81%);
+}
+
+.minus-svg:hover{
+    filter: brightness(0) saturate(100%) invert(69%) sepia(52%) saturate(5337%) hue-rotate(332deg) brightness(95%) contrast(102%);
+}
+
+.hotel-info__bedplace-dropdown-content{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 40px;
+}
+
+.bedplace-submit{
+    width: 163px;
+    height: 50px;
+    left: 30px;
+    top: 138px;
+    display: flex;
+
+    background: #F4683F;
+    border-radius: 200px;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    // width: 121px;
+    // height: 40px;
+
+    margin: auto;
+    margin-top: 25px;
+    span{
+        margin: auto;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+
+
+        color: #FFFFFF;
+    }
+}
+
+.bedplace-submit:hover{
+    background: #e64d1f;
+}
+
+.hotel-info__bedplace-dropdown-closed{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.hotel-info__city-dropdown{
+    position: absolute;
+    width: 250px;
+    height: 312px;
+    left: 1510px;
+    top: 200px;
+
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
+}
+
+.city-item{
+    margin-left: 35px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    span{
+        margin-left: 10px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+
+        color: #333333;
+    }
+}
+
+.city-dropdown-container{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-info__city-dropdown-closed{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;   
+}
