@@ -31,7 +31,7 @@ function App() {
         <Main hotels={hotels} />
       </div> */}
       
-      <HotelInfo/>
+      <HotelInfo hotels={hotels}/>
     </div>
   );
 }

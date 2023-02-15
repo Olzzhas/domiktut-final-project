@@ -16,6 +16,7 @@
 
 
 .hotel-info__wrapper{
+    position: relative;
     width: 1800px;
     margin: auto;
 }
@@ -25,6 +26,7 @@
     justify-content: space-between;
 
     margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .hotel-info__price{
@@ -189,10 +191,11 @@
 
 .price-dropdown{
     position: absolute;
+    z-index: 5;
     width: 360px;
     height: 200px;
-    left: 60px;
-    top: 200px;
+    // left: 60px;
+    top: 81px;
     
     transform: translateY(0);
     transition: var(--speed) ease;
@@ -295,8 +298,9 @@
     position: absolute;
     width: 330px;
     height: 250px;
-    left: 700px;
-    top: 200px;
+    z-index: 5;
+    // left: 700px;
+    top: 81px;
 
     background: #FFFFFF;
     border: 1px solid #E1E1E1;
@@ -334,8 +338,11 @@
     position: absolute;
     width: 375px;
     height: 210px;
-    left: 890px;
-    top: 200px;
+    // left: 100px;
+    margin-left: 194px;
+    top: 81px;
+
+    z-index: 5;
 
     background: #FFFFFF;
     border: 1px solid #E1E1E1;
@@ -460,8 +467,10 @@
     position: absolute;
     width: 250px;
     height: 312px;
-    left: 1510px;
-    top: 200px;
+    // left: 1510px;
+    top: 81px;
+
+    z-index: 5;
 
     background: #FFFFFF;
     border: 1px solid #E1E1E1;
@@ -485,6 +494,7 @@
 }
 
 .city-dropdown-container{
+    
     margin-top: 25px;
     display: flex;
     flex-direction: column;
