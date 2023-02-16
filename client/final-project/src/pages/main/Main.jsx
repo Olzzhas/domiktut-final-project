@@ -4,6 +4,8 @@ import axios from "axios"
 import Navbar from "../../components/navbar/Navbar"
 import Card from "../../components/card/Card"
 
+import { Link } from 'react-router-dom'
+
 import './main.scss'
 function Main({hotels}){
 
@@ -139,9 +141,13 @@ function Main({hotels}){
                         ))}
                     </div>
 
-                    <div className="catalog-button">
-                        <span>Перейти в каталог</span>
-                    </div>
+                    <Link className="link" to="/hotels">
+                        <div className="catalog-button">
+                            <span>Перейти в каталог</span>
+                        </div>
+                    </Link>
+
+                    
                 </div>
             </div>
         </div>

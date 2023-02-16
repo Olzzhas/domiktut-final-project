@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.2",
+    "react-router-dom": "^6.8.1"
+  }
+}

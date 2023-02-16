@@ -5,6 +5,7 @@ import NavbarLight from "../../components/navbar_light/NavbarLight"
 import Filter from "../../components/filter/Filter"
 import HotelCard from "../../components/hotelcard/HotelCard"
 
+
 function HotelInfo({hotels}){
     return(
         <div>
@@ -20,7 +21,7 @@ function HotelInfo({hotels}){
 
                     <div className="card-info-map-block">
                         <div className="card-info-map">
-                            
+
                         </div>
                     </div>
                 </div>

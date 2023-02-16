@@ -1,12 +1,15 @@
 import "./navbar.scss"
 
+import { Link } from "react-router-dom"
+
 function Navbar(){
     return(
         <div className="navbar">
 
             <ul className="first-ul">
-                <img className="logo" src="./img/svg/logo_light.svg" alt="logo"></img>
-
+                <Link to="/">
+                    <img className="logo" src="./img/svg/logo_light.svg" alt="logo"></img>
+                </Link>
                 <div className="city">
                     <img className="map" src="./img/svg/map-locator.svg" alt="map-locator"/>
 
@@ -15,9 +18,11 @@ function Navbar(){
                     <img className="arrow" src="./img/svg/arrow-down.svg" alt="arrow" />
                 </div>
 
-                <div className="catalog">
-                    <h1>Каталог</h1>
-                </div>
+                <Link className="link" to="/hotels">
+                    <div className="catalog">
+                        <h1>Каталог</h1>
+                    </div>
+                </Link>
             </ul>
 
             <ul className="second-ul">

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import Main from "./pages/main/Main"
 import HotelInfo from './pages/hotel_info/HotelInfo';
 import './reset.css'
@@ -24,15 +24,25 @@ function App() {
       fetchData();
     }, []);
 
+    const router = createBrowserRouter(
+      createRoutesFromElements(
+        <>
+          <Route path='/' element={
+            <div className='main-page'>
+              <Main hotels={hotels} />
+            </div>
+          }/>
+
+          <Route path='/hotels' element={<HotelInfo hotels={hotels}/>}/>
+        </>
+      )
+    )
+
   
   return (
-    <div>
-      {/* <div className='main-page'>
-        <Main hotels={hotels} />
-      </div> */}
-      
-      <HotelInfo hotels={hotels}/>
-    </div>
+      <>
+        <RouterProvider router={router}/>
+     </>
   );
 }
 

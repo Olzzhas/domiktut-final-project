@@ -1,11 +1,16 @@
 import "./navbarlight.scss"
 
+import { Link } from "react-router-dom"
+
 function NavbarLight(){
     return(
         <div className="navbar-light">
 
             <div className="left-side">
-                <img className="logo-light" src="/img/svg/logo_dark.svg" alt="logo" />
+            
+                <Link className="link" to="/">
+                    <img className="logo-light" src="/img/svg/logo_dark.svg" alt="logo" />
+                </Link>
 
                 <div className="city-light">
                     <img className="map" src="./img/svg/map-locator.svg" alt="map-locator"/>
