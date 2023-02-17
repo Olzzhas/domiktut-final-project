@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (app *application) routes() *httprouter.Router {
+func (app *application) routes() http.Handler {
 	router := httprouter.New()
 
 	router.HandlerFunc(http.MethodGet, "/api/getAllHotels", app.getHotelsHandler)
@@ -14,7 +14,8 @@ func (app *application) routes() *httprouter.Router {
 
 	router.HandlerFunc(http.MethodPost, "/api/filter", app.showFilteredHotelsHandler)
 
-	router.HandlerFunc(http.MethodPost, "/v1/users", app.registerUserHandler)
+	router.HandlerFunc(http.MethodPost, "/api/users", app.registerUserHandler)
+	router.HandlerFunc(http.MethodPut, "/api/users/activated", app.activateUserHandler)
 
-	return router
+	return app.recoverPanic(app.rateLimit(router))
 }
