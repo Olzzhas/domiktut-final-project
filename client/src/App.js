@@ -3,6 +3,7 @@ import axios from 'axios';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import Main from "./pages/main/Main"
 import HotelInfo from './pages/hotel_info/HotelInfo';
+import Hotel from './pages/hotel/Hotel';
 import './reset.css'
 import './app.scss'
 
@@ -34,6 +35,8 @@ function App() {
           }/>
 
           <Route path='/hotels' element={<HotelInfo hotels={hotels}/>}/>
+
+          <Route path='/test' element={<Hotel/>}/>
         </>
       )
     )
