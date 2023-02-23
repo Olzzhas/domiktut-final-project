@@ -99,6 +99,65 @@ func (app *application) showHotelHandler(w http.ResponseWriter, r *http.Request)
 	}
 }
 
+func (app *application) updateHotelHandler(w http.ResponseWriter, r *http.Request) {
+	id, err := app.readIDParam(r)
+	if err != nil {
+		app.notFoundResponse(w, r)
+		return
+	}
+
+	hotel, err := app.models.Hotels.Get(id)
+	if err != nil {
+		switch {
+		case errors.Is(err, data.ErrRecordNotFound):
+			app.notFoundResponse(w, r)
+		default:
+			app.serverErrorResponse(w, r, err)
+		}
+		return
+	}
+
+	var input struct {
+		Title    string   `json:"title"`
+		City     string   `json:"city"`
+		Price    int64    `json:"price"`
+		Capacity int64    `json:"capacity"`
+		Img      string   `json:"img"`
+		Tags     []string `json:"tags"`
+	}
+
+	err = app.readJSON(w, r, &input)
+	if err != nil {
+		app.badRequestResponse(w, r, err)
+		return
+	}
+
+	hotel.Title = input.Title
+	hotel.City = input.City
+	hotel.Price = input.Price
+	hotel.Capacity = input.Capacity
+	hotel.Img = input.Img
+	hotel.Tags = input.Tags
+
+	v := validator.New()
+	if data.ValidateHotel(v, hotel); !v.Valid() {
+		app.failedValidationResponse(w, r, v.Errors)
+		return
+	}
+
+	err = app.models.Hotels.Update(hotel)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+		return
+	}
+
+	err = app.writeJSON(w, http.StatusOK, envelope{"hotel": hotel}, nil)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+
+	}
+}
+
 type filter struct {
 	DateIn           string `json:"date_in"`
 	DateOut          string `json:"date_out"`

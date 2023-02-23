@@ -11,14 +11,20 @@ function Login(){
     async function registerUser(event) {
         event.preventDefault();
     
-        axios.post("http://localhost:5000/api/users",{
+        axios.post("http://localhost:5000/api/tokens/authentication",{
             email: email,
             password: password,
     
         },)
         .then(res=>{
-            console.log(res.data);
+            console.log(res.data.authentication_token.token);
+            localStorage.setItem("email", email)
+            console.log(localStorage.getItem("email"));
+            localStorage.setItem("accessToken", res.data.authentication_token.token)
+            console.log("from local storage - " + localStorage.getItem("accessToken"));
+            window.location.href = "http://localhost:3000/";
         })
+        
       }
 
     return(

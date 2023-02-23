@@ -20,6 +20,7 @@ function Register(){
         },)
         .then(res=>{
             console.log(res.data);
+            window.location.href = "http://localhost:3000/";
         })
       }
 

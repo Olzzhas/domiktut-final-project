@@ -131,3 +131,53 @@ func (app *application) activateUserHandler(w http.ResponseWriter, r *http.Reque
 		app.serverErrorResponse(w, r, err)
 	}
 }
+
+func (app *application) findUserByToken(w http.ResponseWriter, r *http.Request) {
+	var input struct {
+		AccessToken string `json:"token"`
+	}
+
+	err := app.readJSON(w, r, &input)
+	if err != nil {
+		app.badRequestResponse(w, r, err)
+		return
+	}
+
+	user_id, err := app.models.Tokens.FindUserIdByToken(input.AccessToken)
+	if err != nil {
+		fmt.Errorf("error occured while searching userid by token: %v", err)
+	}
+
+	user, err := app.models.Users.GetById(user_id)
+	if err != nil {
+		fmt.Errorf("error occured while searching user by id: %v", err)
+	}
+
+	err = app.writeJSON(w, http.StatusOK, envelope{"user": user}, nil)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+	}
+
+}
+
+func (app *application) findUserByEmail(w http.ResponseWriter, r *http.Request) {
+	var input struct {
+		Email string `json:"email"`
+	}
+
+	err := app.readJSON(w, r, &input)
+	if err != nil {
+		app.badRequestResponse(w, r, err)
+		return
+	}
+
+	user, err := app.models.Users.GetByEmail(input.Email)
+	if err != nil {
+		fmt.Errorf("error occured while searching user by email: %v", err)
+	}
+
+	err = app.writeJSON(w, http.StatusOK, envelope{"user": user}, nil)
+	if err != nil {
+		app.serverErrorResponse(w, r, err)
+	}
+}

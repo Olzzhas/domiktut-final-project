@@ -1,3 +1,4 @@
+import axios from "axios"
 import React from "react"
 import './filter.scss'
 
@@ -133,7 +134,32 @@ function Filter(){
         setTagsIsOpen(false)
         setPriceOpen(false)
     }
+
+    const [minPrice, setMinPrice] = React.useState('')
+    const [maxPrice, setMaxPrice] = React.useState('')
+    const [dateIn, setDateIn] = React.useState('')
+    const [dateOut, setDateOut] = React.useState('')
+    
+    function showFilteredHotels(event){
+        event.preventDefault();
+
+        axios.post("http://localhost:5000/api/filter",
+        {
+            date_in: dateIn,
+            date_out: dateOut,
+            quantity_of_people: bedplaceCount,
+            city: "Kostanay",
+            price_min: minPrice,
+            price_max: maxPrice
+        },
+        {headers:{
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }}
+        )
+    }
+
     return(
+        <form onSubmit={(e)=>showFilteredHotels(e)} action="">
         <div className="hotel-info__wrapper">
                 
                 <div className="hotel-info__filter">
@@ -151,11 +177,11 @@ function Filter(){
                             <div className="price-dropdown__input-block">
                                 <div className="price-block">
                                     <span>Мин. цена</span>
-                                    <input type="text" placeholder="15 000" name="" id="" />
+                                    <input value={minPrice} onChange={(e)=>setMinPrice(e.target.value)} type="text" placeholder="15 000" name="" id="" />
                                 </div>
                                 <div className="price-block">
                                     <span>Макс. цена</span>
-                                    <input type="text" placeholder="900 000" name="" id="" />
+                                    <input value={maxPrice} onChange={(e)=>setMaxPrice(e.target.value)} type="text" placeholder="900 000" name="" id="" />
                                 </div>
                             </div>
 
@@ -170,8 +196,8 @@ function Filter(){
                         </div>
 
                         <div className="hotel-info__data">
-                            <input type="date" />
-                            <input type="date" />
+                            <input value={dateIn} onChange={(e)=>setDateIn(e.target.value)} type="date" />
+                            <input value={dateOut} onChange={(e)=>setDateOut(e.target.value)} type="date" />
                         </div>
                     </div>
 
@@ -248,13 +274,14 @@ function Filter(){
                             </div>
                         </div>
 
-                        <div className="hotel-info__result-button">
+                        <button type="submit" className="hotel-info__result-button">
                             <span>Показать результат</span>
-                        </div>
+                        </button>
                     </div>
     
                 </div>
             </div>
+        </form>
     )
 }
 

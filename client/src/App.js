@@ -11,6 +11,36 @@ import Login from './pages/login/Login';
 
 function App() {
   const [hotels, addToHotels] = React.useState([])
+  const [token, setToken] = React.useState(localStorage.getItem('accessToken'))
+  const [user, setUser] = React.useState({})
+
+  React.useEffect(() => {
+    async function fetchUser(){
+      try {
+        localStorage.setItem('accessToken', token);
+        if(token === ""){
+          return
+        }else{
+          const [userResponse] = await Promise.all([
+            axios.post('http://localhost:5000/api/user/byEmail',{
+              email:localStorage.getItem("email")
+            })
+          ])
+          
+          console.log(userResponse.data);
+          localStorage.setItem("currentUser", JSON.stringify(userResponse.data.user))
+          setUser(userResponse.data.user)
+
+          let test = JSON.parse(localStorage.getItem("currentUser"))
+          console.log(test);
+        }
+      } catch (error) {
+        throw error
+      }
+    }
+    fetchUser()
+
+  }, [token]);
 
     React.useEffect(() => {
       async function fetchData() {

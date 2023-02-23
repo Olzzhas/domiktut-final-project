@@ -21,13 +21,6 @@ type Hotel struct {
 	Version   int32     `json:"version"`
 }
 
-type booking struct {
-	ID      int64  `json:"id"`
-	DateIn  string `json:"date_in"`
-	DateOut string `json:"date_out"`
-	HotelID int64  `json:"hotel_id"`
-}
-
 func ValidateHotel(v *validator.Validator, hotel *Hotel) {
 	v.Check(hotel.Title != "", "title", "must be provided")
 	v.Check(len(hotel.Title) <= 64, "title", "must not be more than 64 bytes long")
@@ -174,7 +167,25 @@ func (h HotelModel) GetFilteredData(dateIn, dateOut, city string, min_price, max
 }
 
 func (h HotelModel) Update(hotel *Hotel) error {
-	return nil
+	query := `
+		UPDATE hotels
+		SET title = $1, capacity = $2, img = $3, city = $4, price = $5, tags = $6, version = version + 1
+		WHERE id = $7
+		RETURNING version
+	`
+
+	args := []any{
+		hotel.Title,
+		hotel.Capacity,
+		hotel.Img,
+		hotel.City,
+		hotel.Price,
+		pq.Array(hotel.Tags),
+		hotel.ID,
+	}
+
+	return h.DB.QueryRow(query, args...).Scan(&hotel.Version)
+
 }
 
 func (h HotelModel) Delete(hotel *Hotel) error {

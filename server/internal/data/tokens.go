@@ -7,19 +7,22 @@ import (
 	"crypto/sha256"
 	"database/sql"
 	"encoding/base32"
+	"errors"
+	"fmt"
 	"time"
 )
 
 const (
-	ScopeActivation = "activation"
+	ScopeActivation     = "activation"
+	ScopeAuthentication = "authentication"
 )
 
 type Token struct {
-	Plaintext string
-	Hash      []byte
-	UserID    int64
-	Expiry    time.Time
-	Scope     string
+	Plaintext string    `json:"token"`
+	Hash      []byte    `json:"-"`
+	UserID    int64     `json:"-"`
+	Expiry    time.Time `json:"expiry"`
+	Scope     string    `json:"-"`
 }
 
 func generateToken(userID int64, ttl time.Duration, scope string) (*Token, error) {
@@ -55,6 +58,7 @@ type TokenModel struct {
 
 func (m TokenModel) New(userID int64, ttl time.Duration, scope string) (*Token, error) {
 	token, err := generateToken(userID, ttl, scope)
+	fmt.Println("checkdeep")
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +88,36 @@ func (m TokenModel) DeleteAllForUser(scope string, userID int64) error {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	
+
 	_, err := m.DB.ExecContext(ctx, query, scope, userID)
 	return err
+}
+
+func (m TokenModel) FindUserIdByToken(accessToken string) (int64, error) {
+	query := `
+		SELECT user_id FROM tokens
+		WHERE scope = "authentication" and hash = $1
+	`
+
+	var resultId int64
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	err := m.DB.QueryRowContext(ctx, query, accessToken).Scan(
+		&resultId,
+	)
+
+	fmt.Println(resultId)
+
+	if err != nil {
+		switch {
+		case errors.Is(err, sql.ErrNoRows):
+			return 0, ErrRecordNotFound
+		default:
+			return 0, err
+		}
+	}
+
+	return resultId, nil
 }
