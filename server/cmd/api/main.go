@@ -56,11 +56,11 @@ func main() {
 	flag.IntVar(&cfg.db.maxIdleConns, "db-max-idle-conns", 25, "PostgreSQL max idle connections")
 	flag.StringVar(&cfg.db.maxIdleTime, "db-max-idle-time", "15m", "PostgreSQL max connection idle time")
 
-	flag.StringVar(&cfg.smtp.host, "smtp-host", "smtp.gmail.com", "SMTP host")
-	flag.IntVar(&cfg.smtp.port, "smtp-port", 465, "SMTP port")
-	flag.StringVar(&cfg.smtp.username, "smtp-username", "healthyswitcher@gmail.com", "SMTP username")
-	flag.StringVar(&cfg.smtp.password, "smtp-password", "zrlbtsggeqirgnlh", "SMTP password")
-	flag.StringVar(&cfg.smtp.sender, "smtp-sender", "Domiktut <no-reply@domiktut.olzhas.net>", "SMTP sender")
+	flag.StringVar(&cfg.smtp.host, "smtp-host", "sandbox.smtp.mailtrap.io", "SMTP host")
+	flag.IntVar(&cfg.smtp.port, "smtp-port", 25, "SMTP port")
+	flag.StringVar(&cfg.smtp.username, "smtp-username", "971e96875f6323", "SMTP username")
+	flag.StringVar(&cfg.smtp.password, "smtp-password", "c1cc7caca62a89", "SMTP password")
+	flag.StringVar(&cfg.smtp.sender, "smtp-sender", "Healty-Swithcher <no-reply@healthy-switcher.net>", "SMTP sender")
 
 	flag.Parse()
 

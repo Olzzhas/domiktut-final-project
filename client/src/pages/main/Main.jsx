@@ -137,7 +137,7 @@ function Main({hotels}){
                     <h1>Популярное в каталоге</h1>
                     <div className="cards">
                         {hotels.map((hotel) => (
-                            <Card title={hotel.title} price={hotel.price} city={hotel.city} capacity={hotel.capacity} img={hotel.img} tags={hotel.tags}/>
+                            <Card hotel={hotel} title={hotel.title} price={hotel.price} city={hotel.city} capacity={hotel.capacity} img={hotel.img} tags={hotel.tags}/>
                         ))}
                     </div>
 

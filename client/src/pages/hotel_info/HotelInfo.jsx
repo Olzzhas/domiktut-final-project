@@ -15,7 +15,7 @@ function HotelInfo({hotels}){
                 <div className="hotel-info-page-content">
                     <div className="info-card-block">
                         {hotels.map((hotel)=>(
-                            <HotelCard title={hotel.title} img={hotel.img} capacity={hotel.capacity} city={hotel.city} price={hotel.price}/>
+                            <HotelCard hotel={hotel} title={hotel.title} img={hotel.img} capacity={hotel.capacity} city={hotel.city} price={hotel.price}/>
                         ))}
                     </div>
 

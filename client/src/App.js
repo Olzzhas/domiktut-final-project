@@ -6,6 +6,8 @@ import HotelInfo from './pages/hotel_info/HotelInfo';
 import Hotel from './pages/hotel/Hotel';
 import './reset.css'
 import './app.scss'
+import Register from './pages/register/Register';
+import Login from './pages/login/Login';
 
 function App() {
   const [hotels, addToHotels] = React.useState([])
@@ -36,7 +38,11 @@ function App() {
 
           <Route path='/hotels' element={<HotelInfo hotels={hotels}/>}/>
 
-          <Route path='/test' element={<Hotel/>}/>
+          <Route path='/hotel' element={<Hotel/>}/>
+
+          <Route path='/register' element={<Register/>}/>
+
+          <Route path='/login' element={<Login/>} />
         </>
       )
     )

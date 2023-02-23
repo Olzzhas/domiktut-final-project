@@ -12,6 +12,7 @@ func CorsSettings() *cors.Cors {
 		},
 		AllowedOrigins: []string{
 			"http://localhost:3000",
+			"http://localhost:3001",
 		},
 		AllowCredentials: true,
 		AllowedHeaders: []string{

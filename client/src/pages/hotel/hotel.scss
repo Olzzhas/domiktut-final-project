@@ -1,0 +1,449 @@
+.hotel-wrapper{
+    width: 1400px;
+    margin: auto;
+}
+
+.hor-line{
+    margin-top: 47px;
+    width: 100%;
+    height: 1px;
+    left: 0px;
+    top: 121.5px;
+    
+
+    background: #C0C2D7;
+    }
+
+.title-address-div{
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 52px;
+
+
+    h1{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 40px;
+
+        margin-right: 50px;
+        
+
+        /* identical to box height, or 60px */
+
+        color: #333333;
+    }
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+
+        color: #333333;
+    }
+
+    align-items: center;
+}
+
+.div-address{
+    display: flex;
+    align-items: center;
+}
+
+.photo-container{
+    width: 1800px;
+    margin: auto;
+    margin-top: 50px;
+
+    display: flex;
+}
+
+.big-photo-container{
+    width: 695px;
+    height: 500px;
+
+    display: flex;
+
+    border-radius: 20px 0px 0px 20px;
+
+    overflow: hidden;
+
+    img{
+        object-fit: cover;
+    }
+}
+
+.four-photo-container{
+    width: 705px;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.row-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.first-photo-block{
+    width: 350px;
+    height: 245px;
+
+    overflow: hidden;
+
+    img{
+        object-fit: cover;
+    }
+}
+
+.second-top-photo-block{
+    width: 335px;
+    height: 245px;
+
+    border-radius: 0px 20px 0px 0px;
+
+    overflow: hidden;
+
+    img{
+        object-fit: cover;
+    }
+}
+
+.second-bottom-photo-block{
+    width: 335px;
+    height: 245px;
+
+    border-radius: 0px 0px 20px 0px;
+
+    overflow: hidden;
+
+    img{
+        object-fit: cover;
+    }
+}
+
+.info-parent-contianer{
+    width: 1400px;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.info-left-side-container{
+    display: flex;
+    flex-direction: column;
+
+    width: 680px;
+    margin-bottom: 80px;
+}
+
+.flat-info{
+    display: flex;
+    width: 556px;
+    justify-content: space-between;
+
+    margin: 50px 0 30px 0;
+}
+
+.span-p-info{
+    display: flex;
+    flex-direction: column;
+
+    p{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        color: #727488;
+        margin-bottom: 10px;
+    }
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        color: #333333;
+    }
+}
+
+.flat-line{
+    width: 560px;
+    height: 1px;
+    background: #d1d0d0;
+}
+
+.bedplace-info-container{
+    width: 600px;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin: 30px 0 70px 0;
+
+    img{
+        filter: invert(56%) sepia(68%) saturate(3560%) hue-rotate(337deg) brightness(101%) contrast(92%);
+    }
+}
+
+.svg-bedplace-block{
+    display: flex;
+
+
+    img{
+        margin-right: 12px;
+    }
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+
+        color: #727488;
+    }
+}
+
+.hotel-info-h1{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+
+    color: #333333;
+
+    margin-bottom: 20px;
+}
+
+.hotel-description-block{
+    width: 680px;
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 80px;
+
+    p{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 150%;
+
+        color: #333333;
+    }
+}
+
+.time-in-out-block{
+    display: flex;
+    flex-direction: column;
+}
+
+.time-block{
+    width: 280px;
+    height: 50px;
+
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+
+    display: flex;
+
+    p{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+
+        color: #333333;
+    }
+    
+}
+
+.time-in{
+    margin: 18px 72px 0 20px;
+}
+
+.time-ver-line{
+    width: 1px;
+    height: 36px;
+
+    margin-top: 7px;
+
+    background: #C0C2D7;
+}
+
+.time-out{
+    margin: 18px 0 0 20px;
+}
+
+.info-right-side-container{
+    width: 680px;
+    height: 730px;
+
+    margin-top: 40px;
+
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    box-shadow: 0px 4px 50px rgba(5, 9, 22, 0.12);
+    border-radius: 20px;
+
+}
+
+.info-right-side-wrapper{
+    display: flex;
+    flex-direction: column;
+
+    margin: 50px 80px 80px 80px;
+}
+
+.prices-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.prices-first-row{
+    display: flex;
+    justify-content: space-between;
+    width: 265px;
+    margin-bottom: 20px;
+}
+
+.price-day{
+    display: flex;
+    flex-direction: column;
+
+    p{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        color: #727488;
+        margin-bottom: 8px;
+    }
+
+    span{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 22px;
+        /* identical to box height, or 36px */
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        color: #333333;
+
+
+    }
+}
+
+.prices-zalog-block{
+    display: flex; 
+    width: 520px;
+    height: 142px;
+    margin-top: 10px;
+
+    justify-content: space-between;
+}
+
+.zalog{
+    width: 100px;
+    height: 72px;
+
+    margin: auto 0;
+}
+
+.zalog-ver-line{
+    width: 1px;
+    height: 100%;
+    left: 1394px;
+    top: 926px;
+
+    background: #727488;
+}
+
+.price-hor-line{
+    margin-top: 30px;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 1px;
+
+    background: #727488;
+}
+
+.full-weekend{
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 22px;
+    p{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+
+        color: #727488;
+        margin-right: 20px;
+    }
+
+    span{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 22px;
+ 
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        color: #333333;
+    }
+}
+
+.hotel-info__data{
+    width: 280px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #C0C2D7;
+    border-radius: 200px;
+    display: flex;
+    cursor: pointer;
+
+    input{
+        margin: auto;
+        border: none;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+
+        color: #333333;
+    }
+}
+
+.make-reservation-block{
+    margin-top: 100px;
+    display: flex;
+    width: 520px;
+    justify-content: space-between;
+    
+}
+
+.reserve-button{
+    width: 192px;
+    height: 50px;
+
+    background: #F4683F;
+    border-radius: 200px;
+
+    border: none;
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+
+        color: #FFFFFF;
+    }
+}

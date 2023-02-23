@@ -27,12 +27,13 @@ function Navbar(){
 
             <ul className="second-ul">
                 <img src="./img/svg/favorites.svg" alt="favorites" />
+                <a href="http://localhost:3000/favorites"><h1 className="auth">Избранные</h1></a>
 
-                <h1 className="auth">Зарегистрироваться</h1>
+                <a href="http://localhost:3000/register"><h1 className="auth">Зарегистрироваться</h1></a>
 
-                <img src="./img/svg/phone.svg" alt="phone" />
+                <img src="./img/svg/user.svg" alt="user" />
 
-                <h1 className="phone">8 (747) 574-64-02</h1>
+                <a href="http://localhost:3000/login"><h1 className="phone">Войти</h1></a>
             </ul>
             
         </div>

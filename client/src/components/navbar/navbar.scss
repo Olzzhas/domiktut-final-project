@@ -79,9 +79,23 @@
     border:1px solid #F4683F;;
 }
 
+a.text:active, /* активная/посещенная ссылка */
+a.text:hover,  /* при наведении */
+a.text {
+  text-decoration: none;
+  color: #666;
+}
+
 .second-ul{
     display: flex;
     align-items: center;
+
+    a {
+        color: #FFFFFF !important;
+        text-decoration: none
+      }
+    
+    
 
     font-family: 'Montserrat';
     font-style: normal;

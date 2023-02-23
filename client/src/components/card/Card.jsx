@@ -1,6 +1,18 @@
 import "./card.scss"
 
-function Card({title, price, city, img, capacity, tags}){
+function Card({hotel ,title, price, city, img, capacity, tags}){
+    function redirectToHotel(){
+        window.location.href = "http://localhost:3000/hotel";
+        localStorage.setItem("cardId", hotel.id)
+        localStorage.setItem("cardTitle", hotel.title)
+        localStorage.setItem("cardPrice", hotel.price)
+        localStorage.setItem("cardCapacity", hotel.capacity)
+        localStorage.setItem("cardImg", hotel.img)
+        localStorage.setItem("cardTags", hotel.tags)
+        console.log("clicked");
+        console.log(hotel);
+    }
+
     return(
         <div className="card-wrapper">
             <div className="buttons">
@@ -54,7 +66,7 @@ function Card({title, price, city, img, capacity, tags}){
 
             <div className="price-info">
                 <h6>от {price} ₸ / сутки </h6>
-                <span>Подробнее</span>
+                <span onClick={()=>{redirectToHotel()}}>Подробнее</span>
             </div>
 
         </div>
