@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import Main from "./pages/main/Main"
@@ -8,6 +8,7 @@ import './reset.css'
 import './app.scss'
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
+import { UserContext } from './UserContext';
 
 function App() {
   const [hotels, addToHotels] = React.useState([])
@@ -27,7 +28,7 @@ function App() {
             })
           ])
           
-          console.log(userResponse.data);
+          console.log(userResponse.data.user);
           localStorage.setItem("currentUser", JSON.stringify(userResponse.data.user))
           setUser(userResponse.data.user)
 
@@ -39,7 +40,6 @@ function App() {
       }
     }
     fetchUser()
-
   }, [token]);
 
     React.useEffect(() => {
@@ -59,6 +59,7 @@ function App() {
 
     const router = createBrowserRouter(
       createRoutesFromElements(
+        
         <>
           <Route path='/' element={
             <div className='main-page'>
@@ -74,13 +75,15 @@ function App() {
 
           <Route path='/login' element={<Login/>} />
         </>
+        
       )
     )
 
   
   return (
-      <>
+      <><UserContext.Provider value={{user, setUser}}>
         <RouterProvider router={router}/>
+        </UserContext.Provider>
      </>
   );
 }

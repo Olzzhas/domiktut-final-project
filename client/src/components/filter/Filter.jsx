@@ -135,8 +135,8 @@ function Filter(){
         setPriceOpen(false)
     }
 
-    const [minPrice, setMinPrice] = React.useState('')
-    const [maxPrice, setMaxPrice] = React.useState('')
+    const [minPrice, setMinPrice] = React.useState(0)
+    const [maxPrice, setMaxPrice] = React.useState(0)
     const [dateIn, setDateIn] = React.useState('')
     const [dateOut, setDateOut] = React.useState('')
     
@@ -149,13 +149,13 @@ function Filter(){
             date_out: dateOut,
             quantity_of_people: bedplaceCount,
             city: "Kostanay",
-            price_min: minPrice,
-            price_max: maxPrice
+            price_min: minPrice*1,
+            price_max: maxPrice*1
         },
         {headers:{
             "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
         }}
-        )
+        ).then()
     }
 
     return(

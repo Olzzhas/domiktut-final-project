@@ -121,7 +121,7 @@ func (h HotelModel) GetAll() ([]Hotel, error) {
 	return hotels, nil
 }
 
-func (h HotelModel) GetFilteredData(dateIn, dateOut, city string, min_price, max_price, capacity int32) ([]Hotel, error) {
+func (h HotelModel) GetFilteredData(dateIn, dateOut, city string, min_price, max_price, capacity int64) ([]Hotel, error) {
 	query := `
 		SELECT hotels.id, hotels.created_at, hotels.title, hotels.city, hotels.price, hotels.capacity, hotels.img, hotels.tags, hotels.version FROM hotels
 		    JOIN bookings
@@ -130,10 +130,10 @@ func (h HotelModel) GetFilteredData(dateIn, dateOut, city string, min_price, max
 				AND(hotels.capacity >= $3)
 				AND(hotels.price >= $4)
 				AND(hotels.price <= $5)
-				AND(hotels.city = $6)
+				
 	`
 
-	args := []any{dateIn, dateOut, capacity, min_price, max_price, city}
+	args := []any{dateIn, dateOut, capacity, min_price, max_price}
 
 	rows, err := h.DB.Query(query, args...)
 	if err != nil {

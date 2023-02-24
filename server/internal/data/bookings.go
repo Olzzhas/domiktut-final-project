@@ -2,13 +2,15 @@ package data
 
 import (
 	"database/sql"
+	"time"
 )
 
 type Booking struct {
-	ID      int64  `json:"id"`
-	DateIn  string `json:"date_in"`
-	DateOut string `json:"date_out"`
-	HotelID int64  `json:"hotel_id"`
+	ID        int64     `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	DateIn    string    `json:"date_in"`
+	DateOut   string    `json:"date_out"`
+	HotelID   int64     `json:"hotel_id"`
 }
 
 type BookingModel struct {
@@ -19,7 +21,7 @@ func (b BookingModel) Create(booking *Booking) error {
 	query := `
 		INSERT INTO bookings (date_in, date_out, hotel_id)
 		VALUES ($1, $2, $3)
-		RETURNING id, created_at, version
+		RETURNING id
 	`
 
 	args := []any{booking.DateIn, booking.DateOut, booking.HotelID}

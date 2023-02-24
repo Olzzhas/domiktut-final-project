@@ -161,10 +161,10 @@ func (app *application) updateHotelHandler(w http.ResponseWriter, r *http.Reques
 type filter struct {
 	DateIn           string `json:"date_in"`
 	DateOut          string `json:"date_out"`
-	QuantityOfPeople int32  `json:"quantity_of_people"`
+	QuantityOfPeople int64  `json:"quantity_of_people"`
 	City             string `json:"city"`
-	PriceMin         int32  `json:"price_min"`
-	PriceMax         int32  `json:"price_max"`
+	PriceMin         int64  `json:"price_min"`
+	PriceMax         int64  `json:"price_max"`
 }
 
 func (app *application) showFilteredHotelsHandler(w http.ResponseWriter, r *http.Request) {

@@ -19,7 +19,7 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodPost, "/api/user/byToken", app.findUserByToken)
 	router.HandlerFunc(http.MethodPost, "/api/user/byEmail", app.findUserByEmail)
 
-	router.HandlerFunc(http.MethodPost, "/api/booking", app.createReservationHandler)
+	router.HandlerFunc(http.MethodPost, "/api/booking", app.requireAuthenticatedUser(app.createReservationHandler))
 
 	router.HandlerFunc(http.MethodPost, "/api/tokens/authentication", app.createAuthenticationTokenHandler)
 

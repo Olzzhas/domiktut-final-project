@@ -1,6 +1,17 @@
 import "./hotelcard.scss"
 
-function HotelCard({title, capacity, city, price, img}){
+function HotelCard({hotel,title, capacity, city, price, img}){
+    function redirectToHotel(){
+        window.location.href = "http://localhost:3000/hotel";
+        localStorage.setItem("cardId", hotel.id)
+        localStorage.setItem("cardTitle", hotel.title)
+        localStorage.setItem("cardPrice", hotel.price)
+        localStorage.setItem("cardCapacity", hotel.capacity)
+        localStorage.setItem("cardImg", hotel.img)
+        localStorage.setItem("cardTags", hotel.tags)
+        console.log("clicked");
+        console.log(hotel);
+    }
     return(
         <div className="info-card">
             <div className="info-card-img-block">
@@ -73,7 +84,7 @@ function HotelCard({title, capacity, city, price, img}){
                     <span>от {price} ₸ / сутки </span>
                     <div className="other-info">
                         <span>Показать на карте</span>
-                        <p>Подробнее</p>
+                        <p onClick={()=>{redirectToHotel()}}>Подробнее</p>
                     </div>
                 </div>
             </div>

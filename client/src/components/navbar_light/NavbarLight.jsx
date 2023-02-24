@@ -1,8 +1,23 @@
 import "./navbarlight.scss"
 
+import React, {useContext} from "react"
+import { UserContext } from "../../UserContext"
+
 import { Link } from "react-router-dom"
 
 function NavbarLight(){
+    const {user, setUser} =  useContext(UserContext)
+    let username = user.name
+
+    function logout(){
+        localStorage.setItem("accessToken", "")
+        localStorage.setItem("currentUser", "")
+    }
+
+    function testLocalStorage(){
+        console.log(localStorage.getItem("accessToken"));
+        console.log(localStorage.getItem("currentUser"));
+    }
     return(
         <div className="navbar-light">
 
@@ -28,9 +43,20 @@ function NavbarLight(){
                     <img src="/img/svg/search.svg" alt="search" />
                     <input type="text" placeholder="Поиск по названию" />
                 </div>
-
-                <img className="phone-svg" src="/img/svg/phone.svg" alt="phone" />
-                <span className="phone-span">8 (843) 528-65-48</span>
+                {localStorage.getItem("accessToken"==="") ?
+                <>
+                    
+                    <img className="phone-svg" src="/img/svg/user.svg" alt="phone" />
+                    <a href="http://localhost:3000/login"><span className="phone-span">Войти</span></a>
+                </>:
+                <>
+                    <img className="phone-svg" src="/img/svg/user.svg" alt="phone" />
+                    <span className="phone-span">8 (843) 528-65-48</span>
+                    
+                </>
+            
+                }
+                
             </div>
             
         </div>

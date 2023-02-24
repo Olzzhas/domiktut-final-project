@@ -58,7 +58,7 @@ type TokenModel struct {
 
 func (m TokenModel) New(userID int64, ttl time.Duration, scope string) (*Token, error) {
 	token, err := generateToken(userID, ttl, scope)
-	fmt.Println("checkdeep")
+
 	if err != nil {
 		return nil, err
 	}

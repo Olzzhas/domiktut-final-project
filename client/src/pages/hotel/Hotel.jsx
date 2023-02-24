@@ -1,8 +1,30 @@
 import "./hotel.scss"
 import NavbarLight from "../../components/navbar_light/NavbarLight"
 import Footer from "../../components/footer/Footer"
+import React from "react"
+import axios from "axios"
 
 function Hotel(){
+
+    const [dateIn, setDateIn] = React.useState("")
+    const [dateOut, setDateOut] = React.useState("")
+
+    function makeBooking(){
+        // event.prevent.defalut()
+
+        axios.post("http://localhost:5000/api/booking",
+        {
+            date_in:dateIn,
+            date_out:dateOut,
+            hotel_id:JSON.parse(localStorage.getItem("cardId"))
+        },
+        {
+            headers:{
+                "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+            }
+        }).then(res=>console.log(res.data))
+    }
+
     return (
         <div>
             <NavbarLight/>
@@ -183,15 +205,18 @@ function Hotel(){
                             <div className="full-weekend">
                                 <p>Январские празднкии (сутки)</p> <span>от {localStorage.getItem("cardPrice")*4} ₸</span>
                             </div>
-
+                            <form onSubmit={(e)=>makeBooking(e)} >
                             <div className="make-reservation-block">
+                                
                                 <div className="hotel-info__data">
-                                    <input type="date" />
-                                    <input type="date" />
+                                    <input value={dateIn} onChange={(e)=>{setDateIn(e.target.value)}} type="date" />
+                                    <input value={dateOut} onChange={(e)=>{setDateOut(e.target.value)}} type="date" />
                                 </div>
-
-                                <button className="reserve-button"><span>Забронировать</span></button>
+                                
+                                <div onClick={()=>makeBooking()} type="submit" className="reserve-button"><span>Забронировать</span></div>
+                                
                             </div>
+                            </form>
                         </div>
                     </div>
                  </div>
